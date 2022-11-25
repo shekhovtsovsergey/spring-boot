@@ -8,3 +8,4 @@ insert into PRODUCT (title, cost) values ('Magnotta - Bel Paese White', 698.89);
 insert into PRODUCT (title, cost) values ('Shrimp - 16/20, Iqf, Shell On', 778.2);
 insert into PRODUCT (title, cost) values ('Hold Up Tool Storage Rack', 3637.77);
 insert into PRODUCT (title, cost) values ('Wine - Cotes Du Rhone Parallele', 1469.61);
+

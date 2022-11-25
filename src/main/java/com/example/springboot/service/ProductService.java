@@ -1,6 +1,8 @@
 package com.example.springboot.service;
 
+import com.example.springboot.dao.OrderDao;
 import com.example.springboot.dao.ProductDao;
+import com.example.springboot.dao.UserDao;
 import com.example.springboot.entity.Product;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +19,8 @@ import java.util.Optional;
 public class ProductService {
 
     private final ProductDao productDao;
+    private final OrderDao orderDao;
+    private final UserDao userDao;
 
     public Product save(Product product) {
         if (product.getId() != null) {
@@ -38,7 +42,9 @@ public class ProductService {
 
     @Transactional(readOnly = true)
     public List<Product> findAll() {
+        System.out.println(orderDao.findAll());
         return productDao.findAll();
+
     }
 
     public void deleteById(Long id) {
