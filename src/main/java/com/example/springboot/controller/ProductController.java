@@ -35,7 +35,6 @@ public class ProductController {
     @GetMapping
     public String showForm(Model model, @RequestParam(name = "id", required = false) Long id) {
         Product product;
-
         if (id != null) {
             product = productService.findById(id);
         } else {
