@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/spring-boot"
+
+  jpa:
+    properties:
+       hibernate:
+           show_sql: "true"
+
+server:
+  port : 8083
+
+
