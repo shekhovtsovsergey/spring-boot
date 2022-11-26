@@ -42,7 +42,6 @@ public class ProductService {
 
     @Transactional(readOnly = true)
     public List<Product> findAll() {
-        System.out.println(orderDao.findAll());
         return productDao.findAll();
 
     }

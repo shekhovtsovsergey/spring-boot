@@ -1,10 +1,7 @@
 package com.example.springboot.entity;
 
-
 import lombok.*;
-
 import javax.persistence.*;
-import java.util.List;
 
 @ToString
 @Setter
