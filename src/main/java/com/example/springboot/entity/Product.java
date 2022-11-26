@@ -1,5 +1,6 @@
 package com.example.springboot.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
@@ -27,8 +28,9 @@ public class Product {
     @JoinTable(
             name = "orders",
             joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id") )
-    @ManyToMany
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @ManyToMany (fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<User> users;
 
 
