@@ -36,10 +36,13 @@ public class ProductService {
         return productDao.findById(id).orElse(null);
     }
 
+
     @Transactional(readOnly = true)
     public List<Product> findAll() {
         return productDao.findAll();
     }
+
+
 
     public void deleteById(Long id) {
         try {
