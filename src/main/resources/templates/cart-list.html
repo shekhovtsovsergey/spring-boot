@@ -11,13 +11,13 @@
 </head>
 <body>
 
-<div th:replace="~{navbar :: navi(ProductList)}"/>
+<div th:replace="~{navbar :: navi(cartList)}"/>
 
 <div class="container">
 
-    <span th:if="${products.size() == 0}">Товаров нет</span>
+    <span th:if="${carts.size() == 0}">Товаров нет</span>
 
-    <div th:unless="${products.size() == 0}">
+    <div th:unless="${carts.size() == 0}">
         <table class="table">
             <thead>
             <tr>
@@ -27,23 +27,17 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="product, i : ${products}"
+            <tr th:each="product, i : ${carts}"
                 th:attr="prod_index=${product.id}">
                 <th scope="row" th:text="${i.count}"></th>
                 <td th:text="${product.title}"></td>
                 <td th:text="${product.cost}"></td>
+
                 <td >
-                    <a type="button" th:href="@{/product(id=${product.id})}" class="btn btn-warning">Редактировать</a>
+                    <a type="button" th:href="@{/cart/delete(id=${product.id})}" class="btn btn-danger">Удалить</a>
                 </td>
-                <td >
-                    <a type="button" th:href="@{/product/delete(id=${product.id})}" class="btn btn-danger">Удалить</a>
-                </td>
-                <td >
-                    <a type="button" th:href="@{'/product/' + ${product.id} }" class="btn btn-warning">Просмотреть</a>
-                </td>
-                <td >
-                    <a type="button" th:href="@{/cart/addById(id=${product.id})}" class="btn btn-success">Добавить в корзину</a>
-                </td>
+
+
             </tr>
             </tbody>
         </table>
