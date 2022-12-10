@@ -1,5 +1,6 @@
 package com.example.springboot.controller;
 
+
 import com.example.springboot.entity.Product;
 import com.example.springboot.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -9,15 +10,15 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/product")
-public class ProductController {
+@RequestMapping("/shop")
+public class ShopController {
 
     private final ProductService productService;
 
     @GetMapping("/all")
     public String getProductList(Model model) {
-        model.addAttribute("products", productService.findAll());
-        return "product-list";
+        model.addAttribute("shops", productService.findAll());
+        return "shop-list";
     }
 
     @GetMapping("/{productId}")
@@ -26,7 +27,7 @@ public class ProductController {
         if (id != null) {
             product = productService.findById(id);
         } else {
-            return "redirect:/product/all";
+            return "redirect:/shop/all";
         }
         model.addAttribute("product", product);
         return "product-info";
@@ -40,20 +41,12 @@ public class ProductController {
         } else {
             product = new Product();
         }
-        model.addAttribute("product", product);
-        return "product-form";
+        model.addAttribute("shop", product);
+        return "shop-form";
     }
 
-    @PostMapping
-    public String saveProduct(Product product) {
-        productService.save(product);
-        return "redirect:/product/all";
-    }
 
-    @GetMapping("/delete")
-    public String deleteById(@RequestParam(name = "id") Long id) {
-        productService.deleteById(id);
-        return "redirect:/product/all";
-    }
+
+
 
 }

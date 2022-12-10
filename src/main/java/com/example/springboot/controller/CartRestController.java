@@ -2,7 +2,6 @@ package com.example.springboot.controller;
 
 
 import com.example.springboot.entity.Cart;
-import com.example.springboot.entity.Product;
 import com.example.springboot.service.CartService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
