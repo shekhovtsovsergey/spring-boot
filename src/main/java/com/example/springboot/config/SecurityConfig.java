@@ -42,7 +42,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(PRODUCT_ENDPOINT).hasRole("MANAGER")
                 .and()
                 .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
-                .formLogin();
+                //.formLogin();
+                .formLogin(
+                    form -> form
+                        .loginPage("/login")
+                        .loginProcessingUrl("/login")
+                        .defaultSuccessUrl("/users")
+                );
+
+
+
     }
 
 
@@ -65,7 +74,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return webSecurity -> webSecurity.ignoring().antMatchers("/auth");
+        return webSecurity -> webSecurity.ignoring().antMatchers("/auth","/login");
     }
 
 
