@@ -34,16 +34,16 @@
                 <div class="card-body">
                     <form
                             method="post"
-                            th:action="@{/login}"
+                            th:action="@{/product/all}"
                             class="form-horizontal"
                             role="form">
                         <div class="mb-3">
-                            <label for="username" class="control-label">Email *</label>
+                            <label for="username" class="control-label">Username *</label>
                             <input type="text"
                                    id="username"
                                    name="username"
                                    class="form-control"
-                                   placeholder="Email"/>
+                                   placeholder="Username"/>
                         </div>
 
                         <div class="mb-3">
@@ -58,7 +58,7 @@
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary">Login</button>
                             <span> Not registered?
-                            <a th:href="@{/register}"> Register/SignUp Here</a>
+                            <a th:href="@{/login/register}"> Register/SignUp Here</a>
                         </span>
                         </div>
                     </form>
