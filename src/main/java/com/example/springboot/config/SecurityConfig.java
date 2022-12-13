@@ -43,17 +43,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(PRODUCT_ENDPOINT).hasRole("MANAGER")
                 .and()
                 .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
-                .formLogin(
-                    form -> form
-                        .loginPage("/login/form")
-                        .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/users")
-                        .permitAll()
-                ).logout(
-                    logout -> logout
-                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .formLogin(form -> form
+                        .loginPage("/login")
                         .permitAll()
                 );
+                //.formLogin().loginProcessingUrl("/login/form");
+                //.formLogin(httpSecurityFormLoginConfigurer -> httpSecurityFormLoginConfigurer.loginPage("/login/form"));
+                 //   form -> form
+                 //       .loginPage("/login/form")
+                 //       .loginProcessingUrl("/login")
+                 //       .defaultSuccessUrl("/users")
+                 //       .permitAll()
+                //).logout(
+                //    logout -> logout
+                //        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                //        .permitAll()
+                //);
 
     }
 

@@ -34,7 +34,7 @@
                 <div class="card-body">
                     <form
                             method="post"
-                            th:action="@{/product/all}"
+                            th:action="@{/login}"
                             class="form-horizontal"
                             role="form">
                         <div class="mb-3">
@@ -56,7 +56,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-primary">Login</button>
+                            <button type="submit" class="btn btn-primary" value="Login">Login</button>
                             <span> Not registered?
                             <a th:href="@{/login/register}"> Register/SignUp Here</a>
                         </span>
