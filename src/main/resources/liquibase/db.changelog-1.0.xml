@@ -150,4 +150,44 @@
     </changeSet>
 
 
+    <changeSet id="1.0.10" author="sergey.shekhovtsov">
+        <createTable tableName="LOGENTRIES">
+            <column name="id" type="BIGSERIAL" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="USERID" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EDITTIMESTAMP" type="BIGSERIAL" >
+            </column>
+            <column name="SYSTOLIC" type="INT" >
+            </column>
+            <column name="DIASTOLIC" type="INT" >
+            </column>
+            <column name="PULSE" type="INT" >
+            </column>
+            <column name="ARRHYTHMIAS" type="BOOLEAN" >
+            </column>
+            <column name="COMM" type="VARCHAR(255)" >
+            </column>
+            <column name="MEASURETIMESTAMP" type="BIGSERIAL" >
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.11" author="sergey.shekhovtsov">
+        <insert tableName="LOGENTRIES">
+            <column name="USERID" value="d75204d9-745d-4f1f-84bf-0c1d79af3ae6"/>
+            <column name="EDITTIMESTAMP" value="1641029400"/>
+            <column name="SYSTOLIC" value="120"/>
+            <column name="DIASTOLIC" value="80"/>
+            <column name="PULSE" value="74"/>
+            <column name="ARRHYTHMIAS" value="false"/>
+            <column name="COMM" value="Каптоприл"/>
+            <column name="MEASURETIMESTAMP" value="1641029400"/>
+        </insert>
+    </changeSet>
+
+
+
 </databaseChangeLog>
