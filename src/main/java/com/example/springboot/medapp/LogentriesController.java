@@ -1,4 +1,4 @@
-package com.example.springboot.MedApp;
+package com.example.springboot.medapp;
 
 
 import lombok.RequiredArgsConstructor;
@@ -6,6 +6,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +18,12 @@ public class LogentriesController {
 
     private final LogentriesService logentriesService;
 
+
+    @GetMapping("/all")
+    public String getLogentriesAll(Model model) {
+        model.addAttribute("logentries", logentriesService.findAll());
+        return "logentries-list";
+    }
 
     @GetMapping("/{userid}")
     public ResponseEntity<List<Logentries>> getLogentries(@PathVariable("userid") String userid) {

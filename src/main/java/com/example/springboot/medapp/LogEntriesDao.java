@@ -1,4 +1,4 @@
-package com.example.springboot.MedApp;
+package com.example.springboot.medapp;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;

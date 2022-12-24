@@ -37,10 +37,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/api/**").hasRole("ADMIN")
-                .antMatchers(USER_ENDPOINT).hasRole("ADMIN")
-                .antMatchers(PRODUCT_ENDPOINT).hasRole("ADMIN")
-                .antMatchers(PRODUCT_ENDPOINT).hasRole("MANAGER")
+                .antMatchers("/api/**").hasRole("USER")
+                .antMatchers(USER_ENDPOINT).hasRole("USER")
+                .antMatchers(PRODUCT_ENDPOINT).hasRole("USER")
+                .antMatchers(PRODUCT_ENDPOINT).hasRole("USER")
                 .and()
                 .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
                 .formLogin(form -> form

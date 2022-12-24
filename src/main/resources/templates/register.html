@@ -52,7 +52,8 @@
                         <input class="form-control"
                                id="roles"
                                name="roles"
-                               placeholder="Enter role"
+                               placeholder="Enter value 1"
+                               value="1"
                                th:field="*{roles}"
                                type="text"
                         />
@@ -101,31 +102,34 @@
                            th:if="${#fields.hasErrors('email')}">
                         </p>
                     </div>
-                    <div class="form-group mb-3">
-                        <label class="form-label">Password</label>
-                        <input class="form-control"
-                               id="password"
-                               name="password"
-                               placeholder="Enter password"
-                               th:field="*{password}"
-                               type="password"
-                        />
-                        <p th:errors="*{password}" class="text-danger"
-                           th:if="${#fields.hasErrors('password')}">
-                        </p>
-                    </div>
 
 
-                        <p th:errors="*{password}" class="text-danger"
-                           th:if="${#fields.hasErrors('password')}">
-                        </p>
-                    </div>
+
+<!--                    <div class="form-group mb-3">-->
+<!--                        <label class="form-label">Password</label>-->
+<!--                        <input class="form-control"-->
+<!--                               id="password"-->
+<!--                               name="password"-->
+<!--                               placeholder="Enter password"-->
+<!--                               th:field="*{password}"-->
+<!--                               type="password"-->
+<!--                        />-->
+<!--                        <p th:errors="*{password}" class="text-danger"-->
+<!--                           th:if="${#fields.hasErrors('password')}">-->
+<!--                        </p>-->
+<!--                    </div>-->
+
+
+<!--                        <p th:errors="*{password}" class="text-danger"-->
+<!--                           th:if="${#fields.hasErrors('password')}">-->
+<!--                        </p>-->
+<!--                    </div>-->
 
 
 
                     <div class="form-group mb-3">
                         <button class="btn btn-primary" type="submit">Register</button>
-                        <span>Already registered? <a href="/" th:href="@{/login/form}">Login here</a></span>
+                        <span>Already registered? <a href="/" th:href="@{/login}">Login here</a></span>
                     </div>
                 </form>
             </div>

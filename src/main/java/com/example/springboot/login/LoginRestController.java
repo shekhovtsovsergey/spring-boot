@@ -2,9 +2,12 @@ package com.example.springboot.login;
 
 
 import com.example.springboot.dao.ProductDao;
+import com.example.springboot.dao.RoleDao;
 import com.example.springboot.dao.UserDao;
+import com.example.springboot.email.MailService;
 import com.example.springboot.entity.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,17 +16,21 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.validation.Valid;
+import java.security.SecureRandom;
 import java.util.List;
 
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/login")
-public class LoginController1 {
+public class LoginRestController {
 
     private final UserLoginService1 userLoginService;
     private final UserDao userDao;
     private final ProductDao productDao;
+    private final BCryptPasswordEncoder passwordEncoder;
+    private final RoleDao roleDao;
+    private final MailService mailService;
 
 
     @GetMapping("/index")
@@ -65,9 +72,37 @@ public class LoginController1 {
             model.addAttribute("user", user);
             return "register";
         }
+
+        String x = newPass();
+//        String tmp = passwordEncoder.encode(user.getPassword());
+        String tmp = passwordEncoder.encode(x);
+
+//        List <Role> dfr = new ArrayList<>();
+//        dfr = userDao.findByUsername("u").getRoles();
+//        user.setRoles(dfr);
+
+        user.setPassword(tmp);
         userLoginService.save(user);
+        mailService.sendSimpleMessage(user.getEmail(),"Registration", "Hello " + user.getUsername() + ", your password is "+ x);
         return "redirect:/login/register?success";
     }
+
+
+
+    public String newPass() {
+        int len = 10;
+        final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        SecureRandom random = new SecureRandom();
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < len; i++) {
+            int randomIndex = random.nextInt(chars.length());
+            sb.append(chars.charAt(randomIndex));
+        }
+        return sb.toString();
+    }
+
 
 
 }

@@ -1,4 +1,4 @@
-package com.example.springboot.MedApp;
+package com.example.springboot.medapp;
 
 
 import lombok.RequiredArgsConstructor;
@@ -59,4 +59,8 @@ public class LogentriesService {
     }
 
 
+    public List<Logentries> findAll() {
+            return logEntriesDao.findAll();
+        }
 }
+
