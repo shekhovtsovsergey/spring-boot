@@ -11,13 +11,13 @@ import java.util.List;
 
 
 @Service
-public class UserLoginService1 {
+public class LoginService {
 
     private UserDao userDao;
     private RoleDao roleDao;
     private PasswordEncoder passwordEncoder;
 
-    public UserLoginService1(UserDao userDao, RoleDao roleDao, PasswordEncoder passwordEncoder) {
+    public LoginService(UserDao userDao, RoleDao roleDao, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
         this.roleDao = roleDao;
         this.passwordEncoder = passwordEncoder;

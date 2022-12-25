@@ -5,10 +5,12 @@ import com.example.springboot.dao.ProductDao;
 import com.example.springboot.dao.RoleDao;
 import com.example.springboot.dao.UserDao;
 import com.example.springboot.email.MailService;
+import com.example.springboot.entity.Role;
 import com.example.springboot.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.validation.Valid;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -25,7 +28,7 @@ import java.util.List;
 @RequestMapping("/login")
 public class LoginRestController {
 
-    private final UserLoginService1 userLoginService;
+    private final LoginService userLoginService;
     private final UserDao userDao;
     private final ProductDao productDao;
     private final BCryptPasswordEncoder passwordEncoder;
@@ -62,6 +65,7 @@ public class LoginRestController {
 
 
     @PostMapping("/register/save")
+    @Transactional
     public String registration(@Valid @ModelAttribute("user") User user, BindingResult result, Model model){
         User existing = userDao.findByUsername(user.getUsername());
 
@@ -73,16 +77,25 @@ public class LoginRestController {
             return "register";
         }
 
+
         String x = newPass();
-//        String tmp = passwordEncoder.encode(user.getPassword());
         String tmp = passwordEncoder.encode(x);
 
-//        List <Role> dfr = new ArrayList<>();
-//        dfr = userDao.findByUsername("u").getRoles();
-//        user.setRoles(dfr);
+        Role ur_user = roleDao.findByName("ROLE_USER");
+        List dfr = new ArrayList<>();
+        dfr.add(ur_user);
 
-        user.setPassword(tmp);
-        userLoginService.save(user);
+        User userProxy = new User(
+                user.getUsername(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getEmail(),
+                user.getPassword(),
+                dfr
+        );
+
+        userProxy.setPassword(tmp);
+        userLoginService.save(userProxy);
         mailService.sendSimpleMessage(user.getEmail(),"Registration", "Hello " + user.getUsername() + ", your password is "+ x);
         return "redirect:/login/register?success";
     }
