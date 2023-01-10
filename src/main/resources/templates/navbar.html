@@ -30,8 +30,9 @@
                 <li class="nav-item">
                     <a class="nav-link" th:classappend="${activeTab == 'UserList' ? 'active' : ''}" aria-current="page" th:href="@{/user/all}">Пользователи</a>
                 </li>
-
-
+                <li class="nav-item">
+                    <a class="nav-link" th:classappend="${activeTab == 'LogList' ? 'active' : ''}" aria-current="page" th:href="@{/api/v1/logentries/all}">Показатели</a>
+                </li>
             </ul>
         </div>
     </div>

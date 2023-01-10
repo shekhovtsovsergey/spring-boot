@@ -16,6 +16,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 @Configuration
@@ -36,13 +37,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/api/**").hasRole("ADMIN")
-                .antMatchers(USER_ENDPOINT).hasRole("ADMIN")
-                .antMatchers(PRODUCT_ENDPOINT).hasRole("ADMIN")
-                .antMatchers(PRODUCT_ENDPOINT).hasRole("MANAGER")
+                .antMatchers("/api/**").hasRole("USER")
+                .antMatchers(USER_ENDPOINT).hasRole("USER")
+                .antMatchers(PRODUCT_ENDPOINT).hasRole("USER")
+                .antMatchers(PRODUCT_ENDPOINT).hasRole("USER")
                 .and()
                 .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
-                .formLogin();
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .permitAll()
+                );
+                //.formLogin().loginProcessingUrl("/login/form");
+                //.formLogin(httpSecurityFormLoginConfigurer -> httpSecurityFormLoginConfigurer.loginPage("/login/form"));
+                 //   form -> form
+                 //       .loginPage("/login/form")
+                 //       .loginProcessingUrl("/login")
+                 //       .defaultSuccessUrl("/users")
+                 //       .permitAll()
+                //).logout(
+                //    logout -> logout
+                //        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                //        .permitAll()
+                //);
+
     }
 
 

@@ -4,9 +4,12 @@ package com.example.springboot.controller;
 import com.example.springboot.entity.Product;
 import com.example.springboot.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @Controller
 @RequiredArgsConstructor
